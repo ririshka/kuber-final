@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cm-acme-http-solver-n2ddr
+spec:
+  selector:
+    app: cm-acme-http-solver-n2ddr
+  ports:
+    - protocol: TCP
+      port: 8089
+      targetPort: 8089
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cm-acme-http-solver-n2ddr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cm-acme-http-solver-n2ddr
+  template:
+    metadata:
+      labels:
+        app: cm-acme-http-solver-n2ddr
+    spec:
+      containers:
+        - name: cm-acme-http-solver-n2ddr
+          image: bitnami/cert-manager:latest  # Используем образ bitnami/cert-manager
+          ports:
+            - containerPort: 8089

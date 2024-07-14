@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: awesome-cats-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: awesome-cats-frontend
+  template:
+    metadata:
+      labels:
+        app: awesome-cats-frontend
+    spec:
+      containers:
+      - name: awesome-cats-frontend
+        image: gcr.io/kubernates-426007/frontendd:latest
+        ports:
+        - containerPort: 80
